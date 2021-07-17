@@ -14,6 +14,11 @@ class Profile(models.Model):
     def save(self):
         self.save()
 
+    @classmethod
+    def search_profile(cls,username):
+        return cls.objects.fiter(user__username__icontains = username).all()
+
+
 
 class Project(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -28,3 +33,10 @@ class Project(models.Model):
     def save(self):
         self.save()
 
+    @classmethod
+    def search_project(cls,seach_name):
+        return cls.objects.filter(title__icontains=search_name).all()
+
+    @classmethod
+    def all_projects(cls):
+        return cls.objects.order_by("-id")
