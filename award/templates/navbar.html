@@ -18,4 +18,9 @@
     <li class="nav-item">
       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
     </li>
+
+    <form class="d-flex" action="{% url 'search_results' %}">
+      <input class="form-control me-2" type="search" placeholder="Search Project" aria-label="Search" name="projectname" >
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
   </ul>

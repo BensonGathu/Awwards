@@ -34,7 +34,7 @@ class Project(models.Model):
         self.save()
 
     @classmethod
-    def search_project(cls,seach_name):
+    def search_project(cls,search_name):
         return cls.objects.filter(title__icontains=search_name).all()
 
     @classmethod
