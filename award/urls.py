@@ -7,6 +7,7 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('profile/',views.profile,name="profile"),
     path('search/',views.search,name="search_results"),
+    path('uploadproject/',views.uploadproject,name='uploadproject')
 ]
 
 if settings.DEBUG:

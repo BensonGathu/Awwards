@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Project,Profile
+from .forms import ProfileForm,ProjectForm
+
 # Create your views here.
 
 def index(request):
@@ -23,4 +25,17 @@ def search(request):
     else:
         message = "Search for a project"
         return render(render,"searchresults.html",{"message":message})
+
+def uploadproject(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProjectForm(request.POST or None,request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.save()
+        return redirect('index')
+    else:
+        form = ProjectForm()
+    return render(request,'projectform.html',{"form":form})
 
