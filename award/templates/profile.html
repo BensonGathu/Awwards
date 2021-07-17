@@ -1,0 +1,13 @@
+{{user}}
+{% for profile in profile %}
+<img src="{{profile.profile_pic.url}}" alt="" style="height: 100px;">
+<p>{{profile.bio}}</p>
+<i>{{profile.contact}}</i>
+{%endfor%}
+
+{% for project in projects %}
+    <h4>{{project.title}}</h4>
+    <img src="{{project.project_image.url}}" alt="" style="height: 250px;"><br>
+    <p>{{project.project_description}}</p>
+    <a href="{{project.link}}" target="_blank">{{project.link}}</a>
+{% endfor %}
