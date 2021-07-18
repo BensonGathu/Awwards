@@ -7,6 +7,13 @@
 <p>{{profile.bio}}</p>
 <i>{{profile.contact}}</i>
 {%endfor%}
+<div class="modal-content">
+    <form action="{% url 'profile' %}" method="post" novalidate enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
+        {% csrf_token%}
+        {{form}}
+        <button type="submit" class="btn btn-primary btn-sm"> Update Profile</button>
+    </form>
+</form>
 <h5> <b> My projects</b></h5>
 <div class="container">
 {% for project in projects %}

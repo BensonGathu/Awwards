@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -30,10 +31,21 @@ def index(request):
 
 @login_required(login_url="login")
 def profile(request):
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = Profile(user=request.user)
     user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,request.FILES,instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            redirect(request.path_info)
+    else:
+        form = ProfileForm(instance=request.user.profile)
     profile = Profile.objects.filter(user=user)
     projects = Project.objects.filter(user=user)
-    return render(request,'profile.html',{"user":user,"profile":profile,"projects":projects})
+    return render(request,'profile.html',{"user":user,"profile":profile,"projects":projects,"form":form})
 
 @login_required(login_url="login")
 def search(request):
