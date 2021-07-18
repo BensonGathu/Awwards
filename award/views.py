@@ -74,3 +74,8 @@ def uploadproject(request):
         form = ProjectForm()
     return render(request,'projectform.html',{"form":form})
 
+@login_required(login_url="login")
+def singleproject(request,id):
+    project = Project.objects.get(id=id)
+
+    return render(request,'project.html',{"project":project})
