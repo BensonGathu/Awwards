@@ -9,6 +9,7 @@ urlpatterns = [
     path('search/',views.search,name="search_results"),
     path('uploadproject/',views.uploadproject,name='uploadproject'),
     path('register/',views.register,name='register'),
+    path('logout/',views.logoutpage,name='logoutpage')
 ]
 
 if settings.DEBUG:

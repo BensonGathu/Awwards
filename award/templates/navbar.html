@@ -1,6 +1,6 @@
 <ul class="nav nav-pills">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
+      <a class="nav-link active" aria-current="page" href="{% url 'index'%}">Home</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
@@ -15,9 +15,12 @@
     <li class="nav-item">
       <a class="nav-link" href="#">Link</a>
     </li>
+    {% if user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <a class="nav-link " href="{% url 'logoutpage'%}" tabindex="-1" aria-disabled="true">Logout</a>
     </li>
+    {% endif %}
+
 
     <form class="d-flex" action="{% url 'search_results' %}">
       <input class="form-control me-2" type="search" placeholder="Search Project" aria-label="Search" name="projectname" >

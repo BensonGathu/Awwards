@@ -1,13 +1,26 @@
+{% extends 'base.html'%}
+
+{% block content %}
 {{user}}
 {% for profile in profile %}
 <img src="{{profile.profile_pic.url}}" alt="" style="height: 100px;">
 <p>{{profile.bio}}</p>
 <i>{{profile.contact}}</i>
 {%endfor%}
-
+<h5> <b> My projects</b></h5>
+<div class="container">
 {% for project in projects %}
+<div class="row">
+    <div class="col-xs-18 col-sm-6 col-md-3">
+        <div class="thumbnail" data-toggle="modal" style="width:300px; height: 300px;">
     <h4>{{project.title}}</h4>
-    <img src="{{project.project_image.url}}" alt="" style="height: 250px;"><br>
+    <img src="{{project.project_image.url}}" alt="{{image.caption}}" class="img-fluid img-thumbnail" style="width:280px; height: 200px;"><br>
     <p>{{project.project_description}}</p>
     <a href="{{project.link}}" target="_blank">{{project.link}}</a>
+        </div>
+    </div>
 {% endfor %}
+</div>
+</div>
+
+{%endblock%}

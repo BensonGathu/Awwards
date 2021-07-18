@@ -3,6 +3,7 @@ from .models import Project,Profile
 from .forms import ProfileForm,ProjectForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def register(request):
@@ -18,16 +19,23 @@ def register(request):
 
     return render(request,'registration/register.html',{"form":form})
 
+def logoutpage(request):
+    logout(request)
+    return redirect('login')
+
+@login_required(login_url="login")
 def index(request):
     all_projects = Project.all_projects()
     return render(request,'index.html',{"all_projects":all_projects})
 
+@login_required(login_url="login")
 def profile(request):
     user = request.user
     profile = Profile.objects.filter(user=user)
     projects = Project.objects.filter(user=user)
     return render(request,'profile.html',{"user":user,"profile":profile,"projects":projects})
 
+@login_required(login_url="login")
 def search(request):
     if 'projectname' in request.GET and request.GET['projectname']:
         searchproject = request.GET.get('projectname')
@@ -40,6 +48,7 @@ def search(request):
         message = "Search for a project"
         return render(render,"searchresults.html",{"message":message})
 
+@login_required(login_url="login")
 def uploadproject(request):
     current_user = request.user
     if request.method == 'POST':
