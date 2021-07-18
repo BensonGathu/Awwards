@@ -2,10 +2,20 @@ from django.shortcuts import render,redirect
 from .models import Project,Profile
 from .forms import ProfileForm,ProjectForm
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def register(request):
-    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+           
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
     return render(request,'registration/register.html',{"form":form})
 
 def index(request):
