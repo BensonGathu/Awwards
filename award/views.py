@@ -1,8 +1,12 @@
 from django.shortcuts import render,redirect
 from .models import Project,Profile
 from .forms import ProfileForm,ProjectForm
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
+def register(request):
+    form = UserCreationForm()
+    return render(request,'registration/register.html',{"form":form})
 
 def index(request):
     all_projects = Project.all_projects()
