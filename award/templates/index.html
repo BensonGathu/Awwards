@@ -4,7 +4,7 @@
 
 {% for project in all_projects%}
     <h5>{{project.title}}</h5>
-    <img src="{{project.project_image.url}}" alt="" style="height: 250px;">
+   <a href="{% url 'singleproject' project.id%}"><img src="{{project.project_image.url}}" alt="" style="height: 250px;"></a>
     <p>{{project.project_description}}</p>
     <a href="{{project.link}}" target="_blank">{{project.link}}</a>
 {% endfor %}

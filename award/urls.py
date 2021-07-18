@@ -11,6 +11,8 @@ urlpatterns = [
     path('register/',views.register,name='register'),
     path('logout/',views.logoutpage,name='logoutpage'),
     path('project/<int:id>/',views.singleproject,name='singleproject'),
+    path('api/projects/',views.ProjectDet.as_view()),
+    path('api/profiles/',views.Profiles.as_view()),
 ]
 
 if settings.DEBUG:

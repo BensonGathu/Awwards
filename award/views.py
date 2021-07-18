@@ -4,6 +4,9 @@ from .forms import ProfileForm,ProjectForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProjectSerializer,ProfileSerializer
 
 
 # Create your views here.
@@ -79,3 +82,15 @@ def singleproject(request,id):
     project = Project.objects.get(id=id)
 
     return render(request,'project.html',{"project":project})
+
+class ProjectDet(APIView):
+    def get(self,request,format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects,many=True)
+        return Response(serializers.data)
+
+class Profiles(APIView):
+    def get(self,request,format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many=True)
+        return Response(serializers.data)
