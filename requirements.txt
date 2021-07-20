@@ -4,6 +4,7 @@ Django==3.2.5
 django-bootstrap-v5==1.0.4
 django-braces==1.14.0
 django-model-utils==4.1.1
+django-star-ratings==0.9.1
 djangorestframework==3.12.4
 importlib-metadata==3.10.1
 Pillow==8.3.1
