@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('award.urls')),
     path('accounts/',include('django.contrib.auth.urls')),
-    
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
