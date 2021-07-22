@@ -2,21 +2,29 @@
 
 {% block content%}
 
-
+<div class="container-fluid">
 {% for project in all_projects%}
-<div class="container">
-    <div class="row">
-        <div class="">
-        <div class="img-fluid img-thumbnail" data-toggle="modal" data-target="#{{image.id}}" style="width:300px; height: 300px;">
-            <a href="{% url 'singleproject' project.id%}"><img src="{{project.project_image.url}}" alt="" style="height: 250px;"></a>
+
+    <div class="card">
+            <a href="{% url 'singleproject' project.id%}"  class="text-center"><img src="{{project.project_image.url}}" alt="" style="width: 500px;height: 250px;"></a>
         <h4 class="text-center"> <b>{{project.title}}</b></h4>
         <p>{{project.project_description}}</p>
-        <a href="{{project.link}}" target="_blank">{{project.link}}</a>
+        <p>link: <a href="{{project.link}}" target="_blank">{{project.link}}</a></p>
         <!-- <p>{{image.desc}}</p> -->
     </div>
-    </div>
+    
 
 {% endfor %}
 </div>
 </div>
 {%endblock%}
+
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>

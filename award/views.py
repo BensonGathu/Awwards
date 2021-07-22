@@ -27,7 +27,7 @@ def logoutpage(request):
     logout(request)
     return redirect('login')
 
-@login_required(login_url="login")
+
 def index(request):
     all_projects = Project.all_projects()
     return render(request,'index.html',{"all_projects":all_projects})

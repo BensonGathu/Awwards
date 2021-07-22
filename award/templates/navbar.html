@@ -16,6 +16,8 @@
       <button class="btn btn-sm btn-outline-secondary" type="button"><a class="dropdown-item" href="{% url 'logoutpage'%}">Logout</a></button>
       
     </li>
+    {% else %}
+    <button class="btn btn-sm btn-outline-secondary" type="button"><a class="dropdown-item" href="{% url 'logoutpage'%}">login</a></button>
     {% endif %}
   
   </form>
